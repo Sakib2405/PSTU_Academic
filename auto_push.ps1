@@ -1,12 +1,12 @@
 # Define file locations
 $fileLocations = @(
-    "C:\Users\YourUsername\Documents\academic",
     "H:\My Drive\PSTU_Academic",
-    "C:\Users\YourUsername\Desktop\code\problem-solving",
-    "C:\Users\YourUsername\Desktop\code\practice-contest",
-    "C:\Users\YourUsername\Desktop\gits\logs",
-    "C:\Users\YourUsername\Desktop\gits\notes",
-    "C:\Users\YourUsername\Desktop\gits\stash-contents"
+    "H:\My Drive\Documents\academic",
+    "H:\My Drive\code\problem-solving",
+    "H:\My Drive\code\practice-contest",
+    "H:\My Drive\gits\logs",
+    "H:\My Drive\gits\notes",
+    "H:\My Drive\gits\stash-contents"
 )
 
 # Function to perform auto push
