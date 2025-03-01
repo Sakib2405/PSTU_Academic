@@ -1,0 +1,366 @@
+Microsoft Windows [Version 10.0.26100.2894]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\nazmu>sqlplus
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Jan 30 14:53:10 2025
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+Enter user-name: system/1234
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL> create user Judy identified by sarah;
+
+User created.
+
+SQL> grant create session to Judy
+  2  ;
+
+Grant succeeded.
+
+SQL> create user Bob identified by carloyn;
+
+User created.
+
+SQL> grant create session,create table,create view,create synonym to bob;
+
+Grant succeeded.
+
+SQL> alter user bob
+  2  default tablespace users
+  3  quota 5m on users;
+
+User altered.
+
+SQL> grant select on comfort to bob;
+
+Grant succeeded.
+
+SQL> connect bob/carloyn
+Connected.
+SQL> select* from dora.comfort;
+select* from dora.comfort
+                  *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> show user;
+USER is "BOB"
+SQL> select*from  Dora.COMFORT;
+select*from  Dora.COMFORT
+                  *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> create view COMFORT as select * from Dora.COMFORT;
+create view COMFORT as select * from Dora.COMFORT
+                                          *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> connect bob/carloyn
+Connected.
+SQL> create table NEWSPAPER(
+  2  feature varchar2(15) not null,
+  3  section char(1),
+  4  page number;
+page number
+          *
+ERROR at line 4:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table NEWSPAPER(
+  2  feature varchar2(15) not null,
+  3  section char(1),
+  4  page numbergv
+  5
+SQL> page numbergvl;
+SP2-0734: unknown command beginning "page numbe..." - rest of line ignored.
+SQL> connect bob/carloyn
+Connected.
+SQL> create table NEWSPAPER(
+  2  feature varchar2(15) not null,
+  3  section char(1),
+  4  page number
+  5  );
+
+Table created.
+
+SQL> insert into Newspaper values
+  2  ('National News','A',1),
+  3  (Editorials','A',12),
+  4  ('Business','E',1),
+  5  (Weather', 'C',2),
+  6  (Television','B',7),
+  7
+SQL> insert into Newspaper values
+  2  (Editorials','A',12),
+  3  (Weather', 'C',2),
+  4
+SQL>
+SQL>
+SQL> ;
+  1  insert into Newspaper values
+  2  (Editorials','A',12),
+  3* (Weather', 'C',2),
+SQL> insert into Newspaper values
+  2  ('National News','A',1),
+  3  ('Editorials','A',12),
+  4  ('Business','E',1),
+  5  ('Weather', 'C',2),
+  6  ('Television','B',7),
+  7  ('Births','F',7),
+  8  ('Classified','F',8),
+  9  ('Modern Life','B',1),
+ 10  ('Comics','C',4),
+ 11  ('Movies','8',4),
+ 12  ('Bridge','B',2),
+ 13  ('Obituaries','F',6),
+ 14  ('Doctor Is In','F',6);
+('National News','A',1),
+                       *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> show user;
+USER is "BOB"
+SQL> insert into NEWSPAPER values ('National News', 'A', 1);
+
+1 row created.
+
+SQL>  insert into NEWSPAPER values ('Sports', 'D', 1);
+
+1 row created.
+
+SQL> insert into NEWSPAPER values ('Editorials', 'A', 12);
+
+1 row created.
+
+SQL> insert into NEWSPAPER values ('Business', 'E', 1);
+
+1 row created.
+
+SQL> insert into NEWSPAPER values ('Weather', 'C', 2);
+
+1 row created.
+
+SQL> insert into NEWSPAPER values ('Television', 'B', 7);
+
+1 row created.
+
+SQL> insert into NEWSPAPER values ('Births', 'F', 7);
+
+1 row created.
+
+SQL> insert into NEWSPAPER values ('Classified', 'F', 8);
+
+1 row created.
+
+SQL> Disconnected from Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+C:\Users\nazmu>connect system/1234
+'connect' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\nazmu>sqlplus;
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Thu Jan 30 15:36:06 2025
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name: system
+Enter password:
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL> connect bob/carloyn
+Connected.
+SQL> insert into NEWSPAPER values ('Modern Life', 'B', 1);
+
+1 row created.
+
+SQL> insert into NEWSPAPER values ('Comics', 'C', 4);
+
+1 row created.
+
+SQL> insert into NEWSPAPER values ('Movies', 'B', 4);
+
+1 row created.
+
+SQL> insert into NEWSPAPER values ('Bridge', 'B', 2);
+
+1 row created.
+
+SQL> insert into NEWSPAPER values ('Obituaries', 'F', 6);
+
+1 row created.
+
+SQL> insert into NEWSPAPER values ('Doctor Is In', 'F', 6);
+
+1 row created.
+
+SQL> select * from newspaper;
+
+FEATURE         S       PAGE
+--------------- - ----------
+National News   A          1
+Sports          D          1
+Editorials      A         12
+Business        E          1
+Weather         C          2
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     B          1
+Comics          C          4
+Movies          B          4
+
+FEATURE         S       PAGE
+--------------- - ----------
+Bridge          B          2
+Obituaries      F          6
+Doctor Is In    F          6
+
+14 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> grant select on Newspaper to Judy;
+
+Grant succeeded.
+
+SQL> connect judy/sarah;
+Connected.
+SQL> select * from bob.newspaper;
+
+FEATURE         S       PAGE
+--------------- - ----------
+National News   A          1
+Sports          D          1
+Editorials      A         12
+Business        E          1
+Weather         C          2
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     B          1
+Comics          C          4
+Movies          B          4
+
+FEATURE         S       PAGE
+--------------- - ----------
+Bridge          B          2
+Obituaries      F          6
+Doctor Is In    F          6
+
+14 rows selected.
+
+SQL> connect Judy/sarah;
+Connected.
+SQL> insert into bob.Newspaper values('National News','A',1);
+insert into bob.Newspaper values('National News','A',1)
+                *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> connect bob/carloyn
+Connected.
+SQL> grant insert on Newspaper to Judy;
+
+Grant succeeded.
+
+SQL> connect Judy/sarah
+Connected.
+SQL> insert bob.Newspaper values ('National News','A',1);
+insert bob.Newspaper values ('National News','A',1)
+       *
+ERROR at line 1:
+ORA-00925: missing INTO keyword
+
+
+SQL> insert into bob.Newspaper values ('National News','A',1);
+
+1 row created.
+
+SQL> set pagesize 25;
+SQL> select * from Newspaper;
+select * from Newspaper
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> show user;
+USER is "JUDY"
+SQL> connect bob/carloyn
+Connected.
+SQL> select * from Newspaper;
+
+FEATURE         S       PAGE
+--------------- - ----------
+National News   A          1
+Sports          D          1
+Editorials      A         12
+Business        E          1
+Weather         C          2
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     B          1
+Comics          C          4
+Movies          B          4
+Bridge          B          2
+Obituaries      F          6
+Doctor Is In    F          6
+National News   A          1
+
+15 rows selected.
+
+SQL> connect bob/carloyn
+Connected.
+SQL> update bob.Newspaper
+  2  Set section= 'z'
+  3  where page = 1;
+
+5 rows updated.
+
+SQL> select * from Newspaper;
+
+FEATURE         S       PAGE
+--------------- - ----------
+National News   z          1
+Sports          z          1
+Editorials      A         12
+Business        z          1
+Weather         C          2
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     z          1
+Comics          C          4
+Movies          B          4
+Bridge          B          2
+Obituaries      F          6
+Doctor Is In    F          6
+National News   z          1
+
+15 rows selected.
+
+SQL> insert into NEWSPAPER values ('Doctor Is In', 'F', 6);
