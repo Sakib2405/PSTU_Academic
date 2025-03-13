@@ -1,0 +1,548 @@
+Microsoft Windows [Version 10.0.26100.2605]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\nazmu>oracleplus
+'oracleplus' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\nazmu>sqlplus
+
+SQL*Plus: Release 10.2.0.1.0 - Production on Tue Jan 7 09:40:40 2025
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+
+Connected to:
+Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+SQL> select Feature, Section, Page from NEWSPAPER;
+
+FEATURE         S       PAGE
+--------------- - ----------
+Headline        A          1
+Weather         A          1
+Sports          B          1
+Comics          B          2
+Editorial       A          2
+
+SQL> FEATURE S PAGE
+SP2-0734: unknown command beginning "FEATURE S ..." - rest of line ignored.
+SQL> --------------- - ----------
+SQL> National News A 1
+SP2-0734: unknown command beginning "National N..." - rest of line ignored.
+SQL> Sports D 1
+SP2-0042: unknown command "Sports D 1" - rest of line ignored.
+SQL> Editorials A 12
+SP2-0734: unknown command beginning "Editorials..." - rest of line ignored.
+SQL> Business E 1
+SP2-0734: unknown command beginning "Business E..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> Weather C 2Television B 7
+SP2-0734: unknown command beginning "Weather C ..." - rest of line ignored.
+SQL> Births F 7
+SP2-0042: unknown command "Births F 7" - rest of line ignored.
+SQL> Classified F 8
+SP2-0734: unknown command beginning "Classified..." - rest of line ignored.
+SQL> Modern Life B 1
+SP2-0734: unknown command beginning "Modern Lif..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> Comics C 4
+SP2-0042: unknown command "Comics C 4" - rest of line ignored.
+SQL> Movies B 4
+SP2-0042: unknown command "Movies B 4" - rest of line ignored.
+SQL> Bridge B 2
+SP2-0042: unknown command "Bridge B 2" - rest of line ignored.
+SQL> Obituaries F 6
+SP2-0734: unknown command beginning "Obituaries..." - rest of line ignored.
+SP2-0044: For a list of known commands enter HELP
+and to leave enter EXIT.
+SQL> Doctor Is In F 6
+SP2-0734: unknown command beginning "Doctor Is ..." - rest of line ignored.
+SQL> select Feature, Section, Page from NEWSPAPER;
+
+FEATURE         S       PAGE
+--------------- - ----------
+Headline        A          1
+Weather         A          1
+Sports          B          1
+Comics          B          2
+Editorial       A          2
+
+SQL> describe NEWSPAPER
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FEATURE                                   NOT NULL VARCHAR2(15)
+ SECTION                                            CHAR(1)
+ PAGE                                               NUMBER
+
+SQL> Name Null? Type
+SP2-0734: unknown command beginning "Name Null?..." - rest of line ignored.
+SQL> ------------------------------- -------- ------------
+SQL> FEATURE NOT NULL VARCHAR2(15)
+SP2-0734: unknown command beginning "FEATURE NO..." - rest of line ignored.
+SQL> SECTION CHAR(1)
+SP2-0734: unknown command beginning "SECTION CH..." - rest of line ignored.
+SQL> PAGE NUMBER
+SP2-0734: unknown command beginning "PAGE NUMBE..." - rest of line ignored.
+SQL> create table NEWSPAPER (
+  2  Feature VARCHAR2(15) not null,
+  3  Section CHAR(1),
+  4  Page NUMBER
+  5  );
+create table NEWSPAPER (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> DROP TABLE NEWSPAPER;
+
+Table dropped.
+
+SQL> select Feature, Section, Page from NEWSPAPER;
+select Feature, Section, Page from NEWSPAPER
+                                   *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> create table NEWSPAPER (
+  2    Feature VARCHAR2(15) not null,
+  3    Section CHAR(1),
+  4    Page NUMBER
+  5  );
+
+Table created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'National News','A',1),
+  3
+SQL> VALUES( 'National News','A',1);
+SP2-0734: unknown command beginning "VALUES( 'N..." - rest of line ignored.
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'National News','A',1);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Sports','D',1);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Editorials','A',12);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Business','E',1);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Weather','C',2);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Television','B',7);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Births','F',7);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Classified','F',8);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Modern Life','B',1);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Comics','C',4);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Movies','B',4);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Bridge','B',2);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Obituaries','F',6);
+
+1 row created.
+
+SQL> INSERT INTO NEWSPAPER (Feature, Section, Page)
+  2  VALUES( 'Doctor Is In','F',6);
+
+1 row created.
+
+SQL> select Feature, Section, Page from NEWSPAPER;
+
+FEATURE         S       PAGE
+--------------- - ----------
+National News   A          1
+Sports          D          1
+Editorials      A         12
+Business        E          1
+Weather         C          2
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     B          1
+Comics          C          4
+Movies          B          4
+
+FEATURE         S       PAGE
+--------------- - ----------
+Bridge          B          2
+Obituaries      F          6
+Doctor Is In    F          6
+
+14 rows selected.
+
+SQL> select Feature, Section, Page from NEWSPAPER;
+
+FEATURE         S       PAGE
+--------------- - ----------
+National News   A          1
+Sports          D          1
+Editorials      A         12
+Business        E          1
+Weather         C          2
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     B          1
+Comics          C          4
+Movies          B          4
+
+FEATURE         S       PAGE
+--------------- - ----------
+Bridge          B          2
+Obituaries      F          6
+Doctor Is In    F          6
+
+14 rows selected.
+
+SQL> set pagesize
+SQL> select Feature, Section, Page from NEWSPAPER;
+National News   A          1
+Sports          D          1
+Editorials      A         12
+Business        E          1
+Weather         C          2
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     B          1
+Comics          C          4
+Movies          B          4
+Bridge          B          2
+Obituaries      F          6
+Doctor Is In    F          6
+
+14 rows selected.
+
+SQL> describe NEWSPAPER
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FEATURE                                   NOT NULL VARCHAR2(15)
+ SECTION                                            CHAR(1)
+ PAGE                                               NUMBER
+
+SQL> Name Null? Type
+SP2-0734: unknown command beginning "Name Null?..." - rest of line ignored.
+SQL> ------------------------------- -------- ------------
+SQL> FEATURE NOT NULL VARCHAR2(15)
+SP2-0734: unknown command beginning "FEATURE NO..." - rest of line ignored.
+SQL> SECTION CHAR(1)
+SP2-0734: unknown command beginning "SECTION CH..." - rest of line ignored.
+SQL>
+SQL>
+SQL> select Feature, Section, Page from NEWSPAPER;
+National News   A          1
+Sports          D          1
+Editorials      A         12
+Business        E          1
+Weather         C          2
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     B          1
+Comics          C          4
+Movies          B          4
+Bridge          B          2
+Obituaries      F          6
+Doctor Is In    F          6
+
+14 rows selected.
+
+SQL> where Section = 'F';
+SP2-0734: unknown command beginning "where Sect..." - rest of line ignored.
+SQL> select Feature, Section, Page from NEWSPAPER;
+National News   A          1
+Sports          D          1
+Editorials      A         12
+Business        E          1
+Weather         C          2
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     B          1
+Comics          C          4
+Movies          B          4
+Bridge          B          2
+Obituaries      F          6
+Doctor Is In    F          6
+
+14 rows selected.
+
+SQL> select Feature, Section, Page from NEWSPAPER;
+National News   A          1
+Sports          D          1
+Editorials      A         12
+Business        E          1
+Weather         C          2
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     B          1
+Comics          C          4
+Movies          B          4
+Bridge          B          2
+Obituaries      F          6
+Doctor Is In    F          6
+
+14 rows selected.
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Section = 'F';
+Births          F          7
+Classified      F          8
+Obituaries      F          6
+Doctor Is In    F          6
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Section = 'F'
+  3  order by Feature;
+Births          F          7
+Classified      F          8
+Doctor Is In    F          6
+Obituaries      F          6
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Section = 'F'
+  3  order by Page;
+Doctor Is In    F          6
+Obituaries      F          6
+Births          F          7
+Classified      F          8
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Section = 'F'
+  3  order by Page,Feature;
+Doctor Is In    F          6
+Obituaries      F          6
+Births          F          7
+Classified      F          8
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Section = 'F'
+  3  order by Page desc,Feature;
+Classified      F          8
+Births          F          7
+Doctor Is In    F          6
+Obituaries      F          6
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Section = 6;
+where Section = 6
+      *
+ERROR at line 2:
+ORA-01722: invalid number
+
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Page = 6;
+Obituaries      F          6
+Doctor Is In    F          6
+
+SQL> set pagesize 20;
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  select Feature, Section, Page from NEWSPAPER;
+select Feature, Section, Page from NEWSPAPER
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select Feature, Section, Page from NEWSPAPER;
+
+FEATURE         S       PAGE
+--------------- - ----------
+National News   A          1
+Sports          D          1
+Editorials      A         12
+Business        E          1
+Weather         C          2
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     B          1
+Comics          C          4
+Movies          B          4
+Bridge          B          2
+Obituaries      F          6
+Doctor Is In    F          6
+
+14 rows selected.
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Page = 6;
+
+FEATURE         S       PAGE
+--------------- - ----------
+Obituaries      F          6
+Doctor Is In    F          6
+
+SQL> set pagesize 30
+SQL> select Feature, Section, Page from NEWSPAPER;
+
+FEATURE         S       PAGE
+--------------- - ----------
+National News   A          1
+Sports          D          1
+Editorials      A         12
+Business        E          1
+Weather         C          2
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     B          1
+Comics          C          4
+Movies          B          4
+Bridge          B          2
+Obituaries      F          6
+Doctor Is In    F          6
+
+14 rows selected.
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Page = 6;
+
+FEATURE         S       PAGE
+--------------- - ----------
+Obituaries      F          6
+Doctor Is In    F          6
+
+SQL> describe NEWSPAPER
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ FEATURE                                   NOT NULL VARCHAR2(15)
+ SECTION                                            CHAR(1)
+ PAGE                                               NUMBER
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Feature LIKE 'Mo%';
+
+FEATURE         S       PAGE
+--------------- - ----------
+Modern Life     B          1
+Movies          B          4
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Section = 'F';
+
+FEATURE         S       PAGE
+--------------- - ----------
+Births          F          7
+Classified      F          8
+Obituaries      F          6
+Doctor Is In    F          6
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Feature LIKE '__I%';
+
+no rows selected
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Feature LIKE '%o%o%';
+
+FEATURE         S       PAGE
+--------------- - ----------
+Doctor Is In    F          6
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Feature LIKE '_I%';
+
+no rows selected
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Feature LIKE 'I%';
+
+no rows selected
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Feature LIKE 'I%';
+
+no rows selected
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Feature LIKE '__l%';
+
+FEATURE         S       PAGE
+--------------- - ----------
+Television      B          7
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Feature LIKE '_i%';
+
+FEATURE         S       PAGE
+--------------- - ----------
+Births          F          7
+
+SQL>
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Feature LIKE '%i%';
+
+FEATURE         S       PAGE
+--------------- - ----------
+National News   A          1
+Editorials      A         12
+Business        E          1
+Television      B          7
+Births          F          7
+Classified      F          8
+Modern Life     B          1
+Comics          C          4
+Movies          B          4
+Bridge          B          2
+Obituaries      F          6
+
+11 rows selected.
+
+SQL> select Feature, Section, Page from NEWSPAPER
+  2  where Feature LIKE '%I%';
+
+FEATURE         S       PAGE
+--------------- - ----------
+Doctor Is In    F          6
+
+SQL>
