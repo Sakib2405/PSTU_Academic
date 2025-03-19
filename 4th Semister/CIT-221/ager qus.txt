@@ -1,0 +1,47 @@
+
+In system analysis if you use questionnaire as fact finding process which advantages and disadvantages you can get? chap 6
+How reports differ for different persons and places? chap 9
+
+
+What are the cases where illegal data flows happen? chap 8
+Explain the following terms with appropriate example: a. Body language. b. Spatial zones. chap 6
+
+
+Show with example what are the most common process errors occur when a Data Flow Diagram are drawn for a system. chap 8
+Define the followings:
+a) Proxemics
+b) Brainstorming. chap 6
+
+
+How DFD differ from ERD? chap 7+8
+What are the advantages and disadvantages of interviews over other processes? chap 6
+
+
+"A dollar today is worth more than a dollar one year from now"-What is the significance of this statement? Explain with a suitable example. chap 9
+What are the significance of database integrity in System Analysis and Design?
+
+
+"The time value of money is not taken into account for Payback Analysis " Explain the statement with appropriate example chap 9
+Differentiate between databases and conventional files
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
