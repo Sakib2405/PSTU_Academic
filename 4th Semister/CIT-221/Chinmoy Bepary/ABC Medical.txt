@@ -1,0 +1,113 @@
+** Create table 
+
+-- --------------------------------------------------------
+-- Table structure for table `users`
+-- (Assuming you have a users table from your login/registration system)
+-- If not, a basic structure is provided below.
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL UNIQUE,
+  `password` VARCHAR(255) NOT NULL, -- Store hashed passwords
+  `role` ENUM('user', 'admin') NOT NULL DEFAULT 'user',
+  `profile_pic_url` VARCHAR(255) NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+-- Table structure for table `doctors`
+-- Stores information about the doctors available.
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `doctors` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL,
+  `specialization` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NULL UNIQUE,
+  `phone` VARCHAR(20) NULL,
+  `bio` TEXT NULL, -- Optional: A short biography or description
+  `profile_image_url` VARCHAR(255) NULL, -- Optional
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+-- Table structure for table `services`
+-- Stores information about the medical services offered.
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `services` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(255) NOT NULL UNIQUE,
+  `description` TEXT NULL,
+  `duration_minutes` INT NULL, -- Estimated duration of the service
+  `base_cost` DECIMAL(10, 2) NULL, -- Optional: base cost for the service
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+-- Table structure for table `appointments`
+-- This is the core table for managing appointments.
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `appointments` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `user_id` INT NOT NULL,                     -- Foreign key to the users table (patient)
+  `doctor_id` INT NOT NULL,                   -- Foreign key to the doctors table
+  `service_id` INT NULL,                    -- Foreign key to the services table (optional, if a specific service is booked)
+  `appointment_date` DATE NOT NULL,
+  `appointment_time` TIME NOT NULL,
+  `status` ENUM('Pending', 'Confirmed', 'Cancelled', 'Completed', 'Rescheduled') NOT NULL DEFAULT 'Pending',
+  `patient_notes` TEXT NULL,                  -- Notes provided by the patient during booking
+  `doctor_notes` TEXT NULL,                   -- Notes added by the doctor post-appointment (optional)
+  `cancellation_reason` TEXT NULL,          -- Reason if the appointment is cancelled
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- When the appointment was booked
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- When the appointment record was last updated
+
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`doctor_id`) REFERENCES `doctors`(`id`) ON DELETE RESTRICT, -- Or CASCADE depending on your rules
+  FOREIGN KEY (`service_id`) REFERENCES `services`(`id`) ON DELETE SET NULL -- Or RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+-- Optional: Table for Doctor Availability/Schedule
+-- This can be more complex, but here's a basic idea if you want to manage doctor schedules.
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `doctor_schedules` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `doctor_id` INT NOT NULL,
+  `day_of_week` ENUM('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') NOT NULL,
+  `start_time` TIME NOT NULL,
+  `end_time` TIME NOT NULL,
+  `is_available` BOOLEAN DEFAULT TRUE,
+  `break_start_time` TIME NULL,
+  `break_end_time` TIME NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  FOREIGN KEY (`doctor_id`) REFERENCES `doctors`(`id`) ON DELETE CASCADE,
+  UNIQUE KEY `unique_doctor_day_slot` (`doctor_id`, `day_of_week`, `start_time`) -- Prevent overlapping general slots
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+-- Optional: Table for specific unavailable slots or one-off availabilities
+-- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `doctor_time_slots` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `doctor_id` INT NOT NULL,
+  `slot_date` DATE NOT NULL,
+  `start_time` TIME NOT NULL,
+  `end_time` TIME NOT NULL,
+  `slot_status` ENUM('Available', 'Booked', 'Unavailable_Break', 'Unavailable_Holiday') NOT NULL DEFAULT 'Available',
+  `appointment_id` INT NULL, -- Link to an appointment if booked
+
+  FOREIGN KEY (`doctor_id`) REFERENCES `doctors`(`id`) ON DELETE CASCADE,
+  FOREIGN KEY (`appointment_id`) REFERENCES `appointments`(`id`) ON DELETE SET NULL,
+  UNIQUE KEY `unique_doctor_datetime_slot` (`doctor_id`, `slot_date`, `start_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
