@@ -1,3 +1,5 @@
+/*
+
 # Define file locations
 $fileLocations = @(
     "H:\My Drive\PSTU_Academic",
@@ -31,3 +33,5 @@ while ($true) {
     AutoPush
     Start-Sleep -Seconds 86400  # Sleep for 24 hours
 }
+
+*/
