@@ -1,0 +1,63 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["hello", "hi", "hey", "good morning", "good evening", "yo", "what's up"],
+      "responses": [
+        "Hey there! How are you doing?",
+        "Hello! Nice to hear from you!",
+        "Hi! How can I help you today?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["bye", "see you", "good night", "take care", "talk to you later"],
+      "responses": [
+        "Goodbye! Have a great day!",
+        "See you later!",
+        "Take care and talk soon!"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["thank you", "thanks", "thx", "appreciate it"],
+      "responses": [
+        "You're welcome!",
+        "No problem at all!",
+        "Glad I could help!"
+      ]
+    },
+    {
+      "tag": "about",
+      "patterns": ["who are you", "what are you", "tell me about yourself", "what can you do"],
+      "responses": [
+        "I'm your friendly offline voice chatbot, built with Python!",
+        "I'm a small AI that can chat, listen, and talk — all offline!"
+      ]
+    },
+    {
+      "tag": "feeling",
+      "patterns": ["how are you", "how do you feel", "are you okay", "how's it going"],
+      "responses": [
+        "I'm doing great, thanks for asking!",
+        "All systems go! How about you?"
+      ]
+    },
+    {
+      "tag": "time",
+      "patterns": ["what time is it", "tell me the time", "current time please"],
+      "responses": [
+        "Let me check... it's {{time}} now.",
+        "Right now it's {{time}}."
+      ]
+    },
+    {
+      "tag": "name",
+      "patterns": ["what is your name", "who made you", "what should I call you"],
+      "responses": [
+        "You can call me PyBot!",
+        "My name’s PyBot — nice to meet you!"
+      ]
+    }
+  ]
+}
