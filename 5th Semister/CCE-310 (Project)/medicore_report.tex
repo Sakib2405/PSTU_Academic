@@ -1,0 +1,179 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{medicore-project-report-updated}{%
+\section{MediCore Project Report
+(Updated)}\label{medicore-project-report-updated}}
+
+\hypertarget{abstract}{%
+\subsection{Abstract}\label{abstract}}
+
+MediCore is a cross‑platform Flutter-based healthcare management
+application integrating AI, online appointment booking, secure payments
+using SSLCommerz, and Firebase backend services\ldots{}
+
+\hypertarget{introduction}{%
+\subsection{1. Introduction}\label{introduction}}
+
+\hypertarget{project-overview}{%
+\subsubsection{1.1 Project Overview}\label{project-overview}}
+
+MediCore is a Flutter application designed to digitize medical
+services\ldots{}
+
+\hypertarget{problem-statement}{%
+\subsubsection{1.2 Problem Statement}\label{problem-statement}}
+
+Traditional healthcare suffers from inefficiency\ldots{}
+
+\hypertarget{scope}{%
+\subsubsection{1.3 Scope}\label{scope}}
+
+This report covers architecture, database, payments, AI, and more.
+
+\hypertarget{objectives}{%
+\subsection{2. Objectives}\label{objectives}}
+
+\hypertarget{primary-goals}{%
+\subsubsection{2.1 Primary Goals}\label{primary-goals}}
+
+\begin{itemize}
+\tightlist
+\item
+  Flutter-based mobile system\\
+\item
+  Firebase backend\\
+\item
+  Gemini AI integration
+\end{itemize}
+
+\hypertarget{secondary-goals}{%
+\subsubsection{2.2 Secondary Goals}\label{secondary-goals}}
+
+\begin{itemize}
+\tightlist
+\item
+  Online payment\\
+\item
+  Medicine store\\
+\item
+  Scalable architecture
+\end{itemize}
+
+\hypertarget{key-features}{%
+\subsection{3. Key Features}\label{key-features}}
+
+\begin{itemize}
+\tightlist
+\item
+  Authentication\\
+\item
+  AI chatbot\\
+\item
+  Doctor/admin dashboards\\
+\item
+  SSLCommerz payment\\
+\item
+  Medicine store
+\end{itemize}
+
+\hypertarget{system-architecture}{%
+\subsection{4. System Architecture}\label{system-architecture}}
+
+\hypertarget{stack}{%
+\subsubsection{4.1 Stack}\label{stack}}
+
+Flutter, Firebase, SSLCommerz, Gemini AI.
+
+\hypertarget{structure}{%
+\subsubsection{4.2 Structure}\label{structure}}
+
+Provider state management, modular folders.
+
+\hypertarget{database}{%
+\subsection{5. Database}\label{database}}
+
+Firestore NoSQL schema.
+
+\hypertarget{payment-workflow}{%
+\subsection{6. Payment Workflow}\label{payment-workflow}}
+
+SSLCommerz multi‑step verification.
+
+\hypertarget{security}{%
+\subsection{7. Security}\label{security}}
+
+Firestore rules, API protection, App Check.
+
+\hypertarget{testing-deployment}{%
+\subsection{8. Testing \& Deployment}\label{testing-deployment}}
+
+Unit, widget, integration tests.
+
+\hypertarget{challenges-solutions}{%
+\subsection{9. Challenges \& Solutions}\label{challenges-solutions}}
+
+Payment verification, AI optimization.
+
+\hypertarget{future-enhancements}{%
+\subsection{10. Future Enhancements}\label{future-enhancements}}
+
+Telemedicine, EHR, wearable integration.
+
+\hypertarget{conclusion}{%
+\subsection{11. Conclusion}\label{conclusion}}
+
+MediCore provides a modern digital healthcare platform.
+
+\end{document}
