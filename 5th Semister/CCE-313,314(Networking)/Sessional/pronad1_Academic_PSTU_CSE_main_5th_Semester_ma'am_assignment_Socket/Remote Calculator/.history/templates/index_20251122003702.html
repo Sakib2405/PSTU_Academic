@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Remote Calculator</title>
+    <style>
+      :root{ --bg:#f4f6f8; --card:#fff; --accent:#2b6df6; --muted:#6b7280; --success:#10b981; --danger:#ef4444 }
+      *{box-sizing:border-box}
+      body{font-family:Inter,Segoe UI,Arial;margin:0;background:var(--bg);color:#0f172a}
+      .container{max-width:900px;margin:28px auto;padding:16px}
+      .card{background:var(--card);border-radius:10px;padding:18px;box-shadow:0 6px 18px rgba(12,20,40,.06)}
+      h1{margin:0 0 12px;font-size:20px}
+      .layout{display:flex;gap:16px;align-items:flex-start}
+      @media(max-width:720px){.layout{flex-direction:column}}
+      form{flex:1}
+      label{display:block;margin-bottom:10px;font-size:14px;color:var(--muted)}
+      input[type=number], select{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef;font-size:16px}
+      .row{display:flex;gap:12px}
+      .row > *{flex:1}
+      button{background:var(--accent);color:#fff;border:0;padding:10px 14px;border-radius:8px;font-size:16px;cursor:pointer}
+      #result{margin-top:14px;font-weight:600}
+      .history{width:320px}
+      .history h3{margin:0 0 8px;font-size:15px}
+      .history-list{max-height:320px;overflow:auto;padding:8px;border-radius:8px;border:1px dashed #eef2ff;background:#fbfdff}
+      .history-item{padding:8px;border-bottom:1px solid #eef2f6;font-size:14px;color:#0b1220;opacity:0;transform:translateY(6px);animation:fadeUp .28s ease forwards}
+      @keyframes fadeUp{to{opacity:1;transform:none}}
+      .result-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(43,109,246,0.08);color:var(--accent);font-weight:600}
+      .result-badge.error{background:rgba(239,68,68,0.08);color:var(--danger)}
+      .icon{width:16px;height:16px;display:inline-block}
+      .pulse{animation:pulse 900ms ease}
+      @keyframes pulse{0%{transform:scale(.98);opacity:.9}50%{transform:scale(1.03);opacity:1}100%{transform:none;opacity:1}}
+      .controls{display:flex;gap:8px;margin-top:10px}
+      .muted{color:var(--muted);font-size:13px}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>Remote Calculator (Web)</h1>
+        <div class="layout">
+          <form id="calcForm" class="form" autocomplete="off">
+            <div class="row">
+              <label>
+                First number
+                <input id="num1" name="num1" type="number" required />
+              </label>
+              <label>
+                Second number
+                <input id="num2" name="num2" type="number" required />
+              </label>
+            </div>
+
+            <label>
+              Operator
+              <select id="operator" name="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+                <option value="%">%</option>
+              </select>
+            </label>
+
+            <div style="margin-top:12px;display:flex;gap:10px">
+              <button type="submit">Calculate</button>
+              <button type="button" id="clearButton" style="background:#ef4444">Clear</button>
+            </div>
+
+            <div id="result" class="muted">Result: <span id="value">—</span></div>
+          </form>
+
+          <aside class="history card" style="padding:12px">
+            <h3>History</h3>
+            <div class="history-list" id="historyList">
+              <div class="muted">No calculations yet.</div>
+            </div>
+            <div class="controls">
+              <button id="refreshHistory" style="flex:1;background:#0ea5a4">Refresh</button>
+              <button id="clearHistory" style="flex:1;background:#f97316">Clear</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/main.js"></script>
+  </body>
+</html>
