@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Remote Calculator</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width: 540px; margin: 40px auto; }
+      label { display:block; margin-top:12px; }
+      input, select, button { padding:8px; font-size:16px; }
+      #result { margin-top:16px; font-weight:600; }
+    </style>
+  </head>
+  <body>
+    <h1>Remote Calculator (Web)</h1>
+
+    <form id="calcForm">
+      <label>First number
+        <input id="num1" name="num1" type="number" required />
+      </label>
+
+      <label>Operator
+        <select id="operator" name="operator">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+          <option value="%">%</option>
+        </select>
+      </label>
+
+      <label>Second number
+        <input id="num2" name="num2" type="number" required />
+      </label>
+
+      <button type="submit">Calculate</button>
+    </form>
+
+    <div id="result">Result: <span id="value">—</span></div>
+
+    <script src="/static/main.js"></script>
+  </body>
+</html>
