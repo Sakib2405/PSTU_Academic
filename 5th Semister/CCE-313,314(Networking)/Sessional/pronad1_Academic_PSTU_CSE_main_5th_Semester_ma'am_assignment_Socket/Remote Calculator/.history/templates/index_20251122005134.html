@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Remote Calculator</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --bg-start: #ffecd2;
+        --bg-end: #fcb69f;
+        --card-glass: rgba(255,255,255,0.6);
+        --muted: #6b7280;
+        --accent1: #7c3aed; /* violet */
+        --accent2: #06b6d4; /* cyan */
+        --success:#10b981;
+        --danger:#ef4444;
+        --glass-border: rgba(255,255,255,0.7);
+      }
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{font-family:Poppins,Inter,Segoe UI,Arial;margin:0;background:radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent), radial-gradient(1000px 500px at 90% 90%, rgba(6,182,212,0.08), transparent), linear-gradient(180deg,var(--bg-start),var(--bg-end));color:#0b1220}
+      /* decorative blobs */
+      body::before, body::after{content:'';position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none}
+      body::before{background:radial-gradient(circle at 10% 20%, rgba(255,255,255,0.2), transparent 15%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.06), transparent 20%);mix-blend-mode:overlay;opacity:0.9}
+      body::after{background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0));}
+      .container{max-width:980px;margin:46px auto;padding:24px}
+      .card{position:relative;background:linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.5));backdrop-filter: blur(8px) saturate(120%);-webkit-backdrop-filter: blur(8px) saturate(120%);border-radius:16px;padding:26px;box-shadow:0 12px 40px rgba(16,24,40,0.08);border:1px solid var(--glass-border)}
+      h1{margin:0 0 6px;font-size:24px;font-weight:700;color:#0b1220}
+      .desc{color:var(--muted);font-size:13px;margin-bottom:14px}
+      .layout{display:flex;gap:22px;align-items:flex-start}
+      @media(max-width:920px){.layout{flex-direction:column}}
+      form{flex:1}
+      label{display:block;margin-bottom:10px;font-size:13px;color:var(--muted)}
+      input[type=number], select{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(11,17,32,0.04);background:rgba(255,255,255,0.85);color:#0b1220;font-size:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.6)}
+      .row{display:flex;gap:12px}
+      .row > *{flex:1}
+      button{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;border:0;padding:10px 14px;border-radius:12px;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:transform .18s ease,box-shadow .18s ease}
+      .btn-primary{box-shadow:0 10px 30px rgba(124,58,237,0.12)}
+      .btn-primary:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(124,58,237,0.14)}
+      .btn-ghost{background:transparent;color:#0b1220;border:1px solid rgba(11,17,32,0.06)}
+      .btn-ghost:hover{transform:translateY(-2px)}
+      .icon{width:18px;height:18px;flex:0 0 18px;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.06))}
+      #result{margin-top:14px;font-weight:700}
+      .result-badge{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:linear-gradient(90deg, rgba(124,58,237,0.12), rgba(6,182,212,0.06));color:#0b1220;font-weight:700}
+      .result-badge.error{background:linear-gradient(90deg, rgba(239,68,68,0.08), rgba(255,255,255,0.6));color:var(--danger)}
+      .pulse{animation:pulse 720ms ease}
+      @keyframes pulse{0%{transform:scale(.995);opacity:.98}50%{transform:scale(1.03);opacity:1}100%{transform:none;opacity:1}}
+      .history{width:360px}
+      .history h3{margin:0 0 8px;font-size:15px;color:#0b1220}
+      .history-list{max-height:440px;overflow:auto;padding:10px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.8));border:1px solid rgba(11,17,32,0.04)}
+      .history-item{display:flex;align-items:center;gap:12px;padding:10px;border-bottom:1px solid rgba(11,17,32,0.03);font-size:14px;color:#0b1220;opacity:0;transform:translateY(10px);animation:fadeUp .32s cubic-bezier(.2,.9,.3,1) forwards}
+      .history-item:last-child{border-bottom:0}
+      @keyframes fadeUp{to{opacity:1;transform:none}}
+      .controls{display:flex;gap:8px;margin-top:12px}
+      .muted{color:var(--muted);font-size:13px}
+      .error{color:var(--danger)}
+      /* elegant scrollbar */
+      .history-list::-webkit-scrollbar{width:10px}
+      .history-list::-webkit-scrollbar-thumb{background:linear-gradient(180deg, rgba(124,58,237,0.12), rgba(6,182,212,0.08));border-radius:10px}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>Remote Calculator (Web)</h1>
+        <div class="layout">
+          <form id="calcForm" class="form" autocomplete="off">
+            <div class="row">
+              <label>
+                First number
+                <input id="num1" name="num1" type="number" required />
+              </label>
+              <label>
+                Second number
+                <input id="num2" name="num2" type="number" required />
+              </label>
+            </div>
+
+            <label>
+              Operator
+              <select id="operator" name="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+                <option value="%">%</option>
+              </select>
+            </label>
+
+            <div style="margin-top:12px;display:flex;gap:10px">
+              <button type="submit" class="btn-primary">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h18v18H3z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Calculate
+              </button>
+              <button type="button" id="clearButton" style="background:#ef4444" class="btn-ghost">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Clear
+              </button>
+            </div>
+
+            <div id="result" class="muted">Result: <span id="value">—</span></div>
+          </form>
+
+          <aside class="history card" style="padding:12px">
+            <h3>History</h3>
+            <div class="history-list" id="historyList">
+              <div class="muted">No calculations yet.</div>
+            </div>
+            <div class="controls">
+              <button id="refreshHistory" style="flex:1;background:#0ea5a4">Refresh</button>
+              <button id="clearHistory" style="flex:1;background:#f97316">Clear</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/main.js"></script>
+  </body>
+</html>
