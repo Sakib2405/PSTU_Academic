@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Remote Calculator</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --bg:#f6f8fb;
+        --page:#ffffff;
+        --card:#ffffff;
+        --muted:#6b7280;
+        --accent:#4f46e5; /* indigo */
+        --accent-2:#06b6d4; /* cyan */
+        --success:#10b981;
+        --danger:#ef4444;
+        --glass: rgba(15,23,42,0.03);
+      }
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{font-family:Poppins,Inter,Segoe UI,Arial;margin:0;background:linear-gradient(180deg,var(--bg) 0%, #ffffff 80%);color:#0f172a;line-height:1.4}
+      .container{max-width:980px;margin:36px auto;padding:20px}
+      .card{background:var(--card);border-radius:12px;padding:22px;box-shadow:0 8px 30px rgba(15,23,42,0.06);border:1px solid rgba(15,23,42,0.04)}
+      h1{margin:0 0 6px;font-size:22px;font-weight:600;color:#0b1220}
+      .desc{color:var(--muted);font-size:13px;margin-bottom:12px}
+      .layout{display:flex;gap:20px;align-items:flex-start}
+      @media(max-width:900px){.layout{flex-direction:column}}
+      form{flex:1}
+      label{display:block;margin-bottom:10px;font-size:13px;color:var(--muted)}
+      input[type=number], select{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);background:#fff;color:#0b1220;font-size:16px}
+      .row{display:flex;gap:12px}
+      .row > *{flex:1}
+      button{background:var(--accent);color:#fff;border:0;padding:10px 14px;border-radius:10px;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;gap:10px}
+      .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));box-shadow:0 8px 26px rgba(79,70,229,0.12);transition:transform .14s cubic-bezier(.2,.9,.3,1),box-shadow .14s}
+      .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(79,70,229,0.12)}
+      .btn-ghost{background:transparent;color:#0b1220;border:1px solid rgba(15,23,42,0.04)}
+      .btn-ghost:hover{transform:translateY(-2px)}
+      .icon{width:18px;height:18px;flex:0 0 18px}
+      #result{margin-top:14px;font-weight:600}
+      .result-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(79,70,229,0.08), rgba(6,182,212,0.04));color:#0b1220;font-weight:700}
+      .result-badge.error{background:linear-gradient(90deg, rgba(239,68,68,0.06), rgba(255,255,255,0.02));color:var(--danger)}
+      .pulse{animation:pulse 720ms ease}
+      @keyframes pulse{0%{transform:scale(.99);opacity:.95}50%{transform:scale(1.02);opacity:1}100%{transform:none;opacity:1}}
+      .history{width:340px}
+      .history h3{margin:0 0 8px;font-size:15px;color:#0b1220}
+      .history-list{max-height:420px;overflow:auto;padding:8px;border-radius:10px;background:#fbfdff;border:1px solid rgba(15,23,42,0.03)}
+      .history-item{display:flex;align-items:center;gap:10px;padding:10px;border-bottom:1px solid rgba(15,23,42,0.03);font-size:14px;color:#0b1220;opacity:0;transform:translateY(8px);animation:fadeUp .28s ease forwards}
+      .history-item:last-child{border-bottom:0}
+      @keyframes fadeUp{to{opacity:1;transform:none}}
+      .controls{display:flex;gap:8px;margin-top:10px}
+      .muted{color:var(--muted);font-size:13px}
+      .error{color:var(--danger)}
+      /* custom scrollbar */
+      .history-list::-webkit-scrollbar{width:8px}
+      .history-list::-webkit-scrollbar-thumb{background:rgba(15,23,42,0.06);border-radius:8px}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>Remote Calculator (Web)</h1>
+        <div class="layout">
+          <form id="calcForm" class="form" autocomplete="off">
+            <div class="row">
+              <label>
+                First number
+                <input id="num1" name="num1" type="number" required />
+              </label>
+              <label>
+                Second number
+                <input id="num2" name="num2" type="number" required />
+              </label>
+            </div>
+
+            <label>
+              Operator
+              <select id="operator" name="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+                <option value="%">%</option>
+              </select>
+            </label>
+
+            <div style="margin-top:12px;display:flex;gap:10px">
+              <button type="submit" class="btn-primary">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h18v18H3z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Calculate
+              </button>
+              <button type="button" id="clearButton" style="background:#ef4444" class="btn-ghost">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Clear
+              </button>
+            </div>
+
+            <div id="result" class="muted">Result: <span id="value">—</span></div>
+          </form>
+
+          <aside class="history card" style="padding:12px">
+            <h3>History</h3>
+            <div class="history-list" id="historyList">
+              <div class="muted">No calculations yet.</div>
+            </div>
+            <div class="controls">
+              <button id="refreshHistory" style="flex:1;background:#0ea5a4">Refresh</button>
+              <button id="clearHistory" style="flex:1;background:#f97316">Clear</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/main.js"></script>
+  </body>
+</html>
