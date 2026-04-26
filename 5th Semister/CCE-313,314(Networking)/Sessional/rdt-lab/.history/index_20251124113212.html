@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDT Protocol Lab - Animated Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔗 Reliable Data Transfer Protocol Lab</h1>
+            <p>Visualize how reliable data transfer protocols work with this animated simulation</p>
+        </header>
+
+        <div class="simulation-container">
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <div class="parameter-controls">
+                    <h3>📊 Network Parameters</h3>
+                    <div class="slider-group">
+                        <label>Packet Loss: <span id="packetLossValue">30%</span></label>
+                        <input type="range" id="packetLoss" min="0" max="50" value="30" class="slider">
+                    </div>
+                    <div class="slider-group">
+                        <label>ACK Loss: <span id="ackLossValue">30%</span></label>
+                        <input type="range" id="ackLoss" min="0" max="50" value="30" class="slider">
+                    </div>
+                    <div class="slider-group">
+                        <label>Corruption: <span id="corruptionValue">10%</span></label>
+                        <input type="range" id="corruption" min="0" max="30" value="10" class="slider">
+                    </div>
+                    <div class="slider-group">
+                        <label>Timeout: <span id="timeoutValue">2.0s</span></label>
+                        <input type="range" id="timeout" min="1" max="5" step="0.5" value="2" class="slider">
+                    </div>
+                </div>
+
+                <div class="message-controls">
+                    <h3>📤 Send Messages</h3>
+                    <div class="input-group">
+                        <input type="text" id="messageInput" placeholder="Enter message to send" maxlength="20">
+                        <button id="sendSingle">Send Single</button>
+                    </div>
+                    <button id="sendMultiple">Send Test Sequence</button>
+                    <button id="resetSim">Reset Simulation</button>
+                </div>
+            </div>
+
+            <!-- Visualization Area -->
+            <div class="visualization">
+                <!-- Sender Section -->
+                <div class="node sender">
+                    <div class="node-header">
+                        <h3>🚀 SENDER</h3>
+                        <div class="seq-display">Next Seq: <span id="nextSeq">0</span></div>
+                    </div>
+                    <div class="packet-queue" id="senderQueue">
+                        <div class="queue-label">Packet Queue</div>
+                    </div>
+                    <div class="status" id="senderStatus">Ready to send</div>
+                </div>
+
+                <!-- Network Channel -->
+                <div class="channel">
+                    <div class="channel-label">Lossy Network Channel</div>
+                    <div class="packet-animation-area" id="packetAnimation">
+                        <!-- Packets will be animated here -->
+                    </div>
+                    <div class="channel-stats">
+                        <div>Lost: <span id="lostCount">0</span></div>
+                        <div>Corrupted: <span id="corruptedCount">0</span></div>
+                        <div>Delivered: <span id="deliveredCount">0</span></div>
+                    </div>
+                </div>
+
+                <!-- Receiver Section -->
+                <div class="node receiver">
+                    <div class="node-header">
+                        <h3>📥 RECEIVER</h3>
+                        <div class="seq-display">Expected Seq: <span id="expectedSeq">0</span></div>
+                    </div>
+                    <div class="packet-queue" id="receiverQueue">
+                        <div class="queue-label">Received Data</div>
+                    </div>
+                    <div class="status" id="receiverStatus">Waiting for packets</div>
+                </div>
+            </div>
+
+            <!-- Log Console -->
+            <div class="log-console">
+                <h3>📝 Event Log</h3>
+                <div class="console-output" id="eventLog">
+                    <div class="log-entry">Simulation started. Adjust parameters and send messages.</div>
+                </div>
+                <div class="console-controls">
+                    <button id="clearLog">Clear Log</button>
+                    <span class="log-counter">Events: <span id="logCount">1</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Protocol Information -->
+        <div class="info-panel">
+            <div class="protocol-info">
+                <h3>🎯 RDT Protocol Features</h3>
+                <ul>
+                    <li>✅ Sequence Numbers (0,1 alternating)</li>
+                    <li>✅ Checksum for corruption detection</li>
+                    <li>✅ ACK mechanism</li>
+                    <li>✅ Timeout and retransmission</li>
+                    <li>✅ Stop-and-Wait flow control</li>
+                    <li>✅ Duplicate detection</li>
+                </ul>
+            </div>
+            <div class="statistics">
+                <h3>📈 Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Packets Sent:</span>
+                        <span class="stat-value" id="statSent">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">ACKs Received:</span>
+                        <span class="stat-value" id="statAcks">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Retransmissions:</span>
+                        <span class="stat-value" id="statRetrans">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Success Rate:</span>
+                        <span class="stat-value" id="statSuccess">100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
