@@ -1,0 +1,34 @@
+INCLUDE 'EMU8086.INC'
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+MAIN PROC
+    MOV BX,0
+    MOV AH,1
+    FOR1:
+    INT 21H
+     
+
+     
+    CMP AL,0DH
+    JE END_FOR1 
+    SUB AL,30H
+    SHL BX,1
+    OR BL,AL
+    JMP FOR1
+    
+    END_FOR1:
+    PRINTN
+    PRINTN
+    
+    MOV AH,2
+    ADD BL,30H
+    MOV DL,BL
+    INT 21H
+    
+    EXIT:
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
