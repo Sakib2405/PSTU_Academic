@@ -1,0 +1,24 @@
+
+
+.MODEL SMALL
+.STACK 100H
+.DATA
+.CODE
+MAIN PROC 
+    MOV ah,1
+    int 21h
+MOV AX,@DATA
+MOV DX,AX
+MOV CX,AX
+CMP BX,CX 
+mov ah,1
+int 21h
+JLE NEXT
+MOV CX,BX 
+mov ah,2
+int 21h
+NEXT:
+MOV AH,4CH
+INT 21H
+MAIN ENDP
+END MAIN
