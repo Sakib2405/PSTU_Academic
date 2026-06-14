@@ -1,0 +1,11 @@
+C:\Users\nazmu>powershell
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\Users\nazmu> Get-CimInstance Win32_OperatingSystem | Select-Object OSArchitecture
+
+OSArchitecture
+--------------
+64-bit
