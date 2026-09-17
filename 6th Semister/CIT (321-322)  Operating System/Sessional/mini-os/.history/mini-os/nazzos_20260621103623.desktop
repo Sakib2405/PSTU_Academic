@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=nazzos — OS Simulator
+Comment=Interactive Terminal OS Simulator
+Exec=konsole --noclose -e /home/sourav/.pyenv/shims/python "/run/media/sourav/data/OS project/OS Sessional/mini-os/main.py"
+Icon=utilities-terminal
+Terminal=false
+Categories=Education;Science;
