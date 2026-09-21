@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NazzOS Web Terminal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css" />
+    <style>
+      body { margin: 0; height: 100vh; display: flex; flex-direction: column; }
+      #terminal { flex: 1; }
+    </style>
+  </head>
+  <body>
+    <div id="terminal"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
+    <script>
+      const term = new Terminal({ cols: 100, rows: 30 });
+      term.open(document.getElementById('terminal'));
+
+      const protocol = (location.protocol === 'https:') ? 'wss' : 'ws';
+      const socketUrl = protocol + '://' + location.host + '/ws';
+      const socket = new WebSocket(socketUrl);
+
+      socket.addEventListener('open', () => {
+        term.write('\r\n\x1b[32mConnected to NazzOS\x1b[0m\r\n');
+      });
+
+      socket.addEventListener('message', (ev) => {
+        term.write(ev.data);
+      });
+
+      term.onData((data) => {
+        socket.send(data);
+      });
+
+      socket.addEventListener('close', () => {
+        term.write('\r\n\x1b[31mConnection closed\x1b[0m\r\n');
+      });
+    </script>
+  </body>
+</html>
