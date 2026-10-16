@@ -1,0 +1,69 @@
+# NazzOS
+
+NazzOS is an interactive, terminal-based operating system simulator for learning OS concepts (scheduling, memory, file systems, disk scheduling, deadlock, synchronization, and more).
+
+Supported demos
+- Process scheduling (FCFS, SJF, SRTF, Round Robin, Priority, MLFQ)
+- Memory management (paging, replacement algorithms, buddy allocator)
+- Virtual file system (inodes, FAT-like demo, permissions)
+- Disk scheduling (FCFS, SSTF, SCAN, C-SCAN, LOOK, C-LOOK)
+- Deadlock detection & recovery (Banker's algorithm, RAG)
+- Synchronization demos (Dining Philosophers, Producer-Consumer, Reader-Writer)
+
+Prerequisites
+- Python 3.10 or newer
+- Recommended packages: listed in `requirements.txt`
+
+Quick start — Local (terminal)
+1. Create and activate a virtual environment (recommended):
+
+```bash
+# macOS / Linux / WSL
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Windows (PowerShell)
+py -3 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+2. Install dependencies:
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+3. Run NazzOS in your terminal:
+
+```bash
+python main.py
+```
+
+Notes
+- The interactive prompt appears as `NazzOS [/]>{cwd}`. Type `help` to list modules and `help <module>` for details.
+- `NazzOS.desktop` is included for Linux desktop integration (optional).
+
+Quick start — Web (browser)
+The repository includes a simple FastAPI-based web UI at `web/index.html` and a WebSocket server in `web.py` that proxies a `main.py` subprocess or PTY. On Linux or WSL the PTY mode provides a better interactive experience.
+
+1. Install dependencies (see Local steps above).
+2. Run the web server with Uvicorn:
+
+```bash
+# preferred
+uvicorn web:app --host 0.0.0.0 --port 8000
+
+# or, run directly (this project provides a small runner in web.py):
+python web.py
+```
+
+3. Open a browser at `http://localhost:8000`.
+
+Notes and troubleshooting
+- On Windows native Python, true PTY behavior is not available. Use WSL or a Linux host to get the full PTY-based terminal experience. When PTY is unavailable, `web.py` falls back to a subprocess proxy (still works, but some terminal features may differ).
+- If `uvicorn` is missing, install it: `pip install uvicorn` (or `pip install -r requirements.txt`).
+- This project exposes an interactive shell over the network — use only in isolated, trusted environments for demos.
+
+License
+- Check the repository or ask the maintainer for licensing information.
