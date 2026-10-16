@@ -1,0 +1,6 @@
+rich
+prompt_toolkit
+psutil
+fastapi
+uvicorn
+websockets
