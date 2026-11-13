@@ -1,0 +1,92 @@
+[2026/01/07 23:10:06.724] 
+##################################################################################
+############################## Ventoy2DiskX86  #############################
+##################################################################################
+[2026/01/07 23:10:06.725] Current Directory <G:\My Drive\PSTU_Academic\6th Semister\CIT (321-322)  Operating System\Sessional\ventoy-1.1.10-windows\ventoy-1.1.10>
+[2026/01/07 23:10:06.725] Exe file path <G:\My Drive\PSTU_Academic\6th Semister\CIT (321-322)  Operating System\Sessional\ventoy-1.1.10-windows\ventoy-1.1.10\Ventoy2Disk.exe>
+[2026/01/07 23:10:06.725] Current directory check OK.
+[2026/01/07 23:10:06.749] Current directory:<G:\My Drive\PSTU_Academic\6th Semister\CIT (321-322)  Operating System\Sessional\ventoy-1.1.10-windows\ventoy-1.1.10>
+[2026/01/07 23:10:06.786] ######### Current Ventoy Version: Ventoy2DiskX86 1.1.10 ########
+[2026/01/07 23:10:06.811] id=5404/14500
+[2026/01/07 23:10:06.825] PPath:<C:\Windows\explorer.exe>
+[2026/01/07 23:10:06.845] PSize:<3191352 3116KB>
+[2026/01/07 23:10:06.875] Lunch main process 0
+[2026/01/07 23:10:06.910] Control Flag: 0 1 1
+[2026/01/07 23:10:06.942] Windows Version: <<Windows 11 Pro, 64-bit (Build 26200.7462)>>
+[2026/01/07 23:10:06.959] 
+===================== Enum All PhyDrives =====================
+[2026/01/07 23:10:06.983] RegOpenKeyExA <SYSTEM\CurrentControlSet\Services\disk\Enum> Ret:0
+[2026/01/07 23:10:07.009] RegQueryValueExA <Count> ret:0  Size:4 Value:2
+[2026/01/07 23:10:07.034] GetPhysicalDriveCount: 2
+[2026/01/07 23:10:07.058] Logical Drives: 0x7c
+[2026/01/07 23:10:07.078] LogicalDrive:\\.\C: PhyDrive:1 Num:1 Offset:122683392 ExtentLength:249227640832
+[2026/01/07 23:10:07.109] C --> 1
+[2026/01/07 23:10:07.128] LogicalDrive:\\.\D: PhyDrive:0 Num:1 Offset:1048576 ExtentLength:333000474624
+[2026/01/07 23:10:07.157] D --> 0
+[2026/01/07 23:10:07.176] LogicalDrive:\\.\E: PhyDrive:0 Num:1 Offset:333001523200 ExtentLength:333000474624
+[2026/01/07 23:10:07.213] E --> 0
+[2026/01/07 23:10:07.241] LogicalDrive:\\.\F: PhyDrive:0 Num:1 Offset:666001997824 ExtentLength:334202142720
+[2026/01/07 23:10:07.290] F --> 0
+[2026/01/07 23:10:07.325] DeviceIoControl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS failed \\.\G:, error:1
+[2026/01/07 23:10:07.343] G --> -1
+[2026/01/07 23:10:07.382] Create file Handle:000000E0 \\.\PhysicalDrive0 status:0
+[2026/01/07 23:10:07.406] PHYSICALDRIVE0 size 1000204886016 bytes
+[2026/01/07 23:10:07.439] Create file Handle:000000E4 \\.\PhysicalDrive1 status:0
+[2026/01/07 23:10:07.462] PHYSICALDRIVE1 size 250059350016 bytes
+[2026/01/07 23:10:07.486] PhyDrv:0 BusType:SATA Removable:0 Size:1024GB(1000204886016) Sector:512/4096 Name: TOSHIBA MQ04ABF100
+[2026/01/07 23:10:07.531] PhyDrv:1 BusType:Nvme Removable:0 Size:256GB(250059350016) Sector:512/4096 Name: HP SSD EX900 250GB
+[2026/01/07 23:10:07.558] LogicalDrive:\\.\C: PhyDrive:1 Num:1 Offset:122683392 ExtentLength:249227640832
+[2026/01/07 23:10:07.582] Logical Drive:C  ===> PhyDrive:1
+[2026/01/07 23:10:07.607] LogicalDrive:\\.\D: PhyDrive:0 Num:1 Offset:1048576 ExtentLength:333000474624
+[2026/01/07 23:10:07.634] Logical Drive:D  ===> PhyDrive:0
+[2026/01/07 23:10:07.659] LogicalDrive:\\.\E: PhyDrive:0 Num:1 Offset:333001523200 ExtentLength:333000474624
+[2026/01/07 23:10:07.682] Logical Drive:E  ===> PhyDrive:0
+[2026/01/07 23:10:07.708] LogicalDrive:\\.\F: PhyDrive:0 Num:1 Offset:666001997824 ExtentLength:334202142720
+[2026/01/07 23:10:07.741] Logical Drive:F  ===> PhyDrive:0
+[2026/01/07 23:10:07.775] DeviceIoControl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS failed \\.\G:, error:1
+[2026/01/07 23:10:07.799] Logical Drive:G  ===> PhyDrive:-1
+[2026/01/07 23:10:07.821] < TOSHIBA MQ04ABF100> is filtered for not USB type.
+[2026/01/07 23:10:07.843] < HP SSD EX900 250GB> is filtered for not USB type.
+[2026/01/07 23:10:07.941] Load languages from json file ...
+[2026/01/07 23:10:07.965] language json file len:293123 json parse:0
+[2026/01/07 23:10:07.974] Total 53 languages ...
+[2026/01/07 23:10:08.085] Courier New font <C:\Windows\Fonts\couri.ttf> exist OK.
+[2026/01/07 23:10:08.092] system_dir=<C:\Windows\system32>
+[2026/01/07 23:10:08.129] sysnative_dir=<C:\Windows\Sysnative>
+[2026/01/07 23:10:08.166] LoadLibrary shell32.dll.mui SUCCESS
+[2026/01/07 23:10:08.176] SetAlertPromptHook SUCCESS
+[2026/01/07 23:10:16.757] #### Now Refresh PhyDrive ####
+[2026/01/07 23:10:16.773] 
+===================== Enum All PhyDrives =====================
+[2026/01/07 23:10:16.797] RegOpenKeyExA <SYSTEM\CurrentControlSet\Services\disk\Enum> Ret:0
+[2026/01/07 23:10:16.824] RegQueryValueExA <Count> ret:0  Size:4 Value:2
+[2026/01/07 23:10:16.841] GetPhysicalDriveCount: 2
+[2026/01/07 23:10:16.877] Logical Drives: 0x7c
+[2026/01/07 23:10:16.899] LogicalDrive:\\.\C: PhyDrive:1 Num:1 Offset:122683392 ExtentLength:249227640832
+[2026/01/07 23:10:16.931] C --> 1
+[2026/01/07 23:10:16.962] LogicalDrive:\\.\D: PhyDrive:0 Num:1 Offset:1048576 ExtentLength:333000474624
+[2026/01/07 23:10:16.986] D --> 0
+[2026/01/07 23:10:17.010] LogicalDrive:\\.\E: PhyDrive:0 Num:1 Offset:333001523200 ExtentLength:333000474624
+[2026/01/07 23:10:17.028] E --> 0
+[2026/01/07 23:10:17.058] LogicalDrive:\\.\F: PhyDrive:0 Num:1 Offset:666001997824 ExtentLength:334202142720
+[2026/01/07 23:10:17.077] F --> 0
+[2026/01/07 23:10:17.103] DeviceIoControl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS failed \\.\G:, error:1
+[2026/01/07 23:10:17.125] G --> -1
+[2026/01/07 23:10:17.151] Create file Handle:000002C8 \\.\PhysicalDrive0 status:0
+[2026/01/07 23:10:17.178] PHYSICALDRIVE0 size 1000204886016 bytes
+[2026/01/07 23:10:17.204] Create file Handle:000002C8 \\.\PhysicalDrive1 status:0
+[2026/01/07 23:10:17.225] PHYSICALDRIVE1 size 250059350016 bytes
+[2026/01/07 23:10:17.241] PhyDrv:0 BusType:SATA Removable:0 Size:1024GB(1000204886016) Sector:512/4096 Name: TOSHIBA MQ04ABF100
+[2026/01/07 23:10:17.263] PhyDrv:1 BusType:Nvme Removable:0 Size:256GB(250059350016) Sector:512/4096 Name: HP SSD EX900 250GB
+[2026/01/07 23:10:17.292] LogicalDrive:\\.\C: PhyDrive:1 Num:1 Offset:122683392 ExtentLength:249227640832
+[2026/01/07 23:10:17.324] Logical Drive:C  ===> PhyDrive:1
+[2026/01/07 23:10:17.341] LogicalDrive:\\.\D: PhyDrive:0 Num:1 Offset:1048576 ExtentLength:333000474624
+[2026/01/07 23:10:17.358] Logical Drive:D  ===> PhyDrive:0
+[2026/01/07 23:10:17.391] LogicalDrive:\\.\E: PhyDrive:0 Num:1 Offset:333001523200 ExtentLength:333000474624
+[2026/01/07 23:10:17.462] Logical Drive:E  ===> PhyDrive:0
+[2026/01/07 23:10:17.493] LogicalDrive:\\.\F: PhyDrive:0 Num:1 Offset:666001997824 ExtentLength:334202142720
+[2026/01/07 23:10:17.509] Logical Drive:F  ===> PhyDrive:0
+[2026/01/07 23:10:17.541] DeviceIoControl IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS failed \\.\G:, error:1
+[2026/01/07 23:10:17.562] Logical Drive:G  ===> PhyDrive:-1
+[2026/01/07 23:10:17.578] < TOSHIBA MQ04ABF100> is filtered for not USB type.
+[2026/01/07 23:10:17.609] < HP SSD EX900 250GB> is filtered for not USB type.
